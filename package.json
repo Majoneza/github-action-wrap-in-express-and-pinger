@@ -1,0 +1,27 @@
+{
+  "name": "github-action-wrap-in-express-and-pinger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Majoneza/github-action-wrap-in-express-and-pinger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Majoneza/github-action-wrap-in-express-and-pinger/issues"
+  },
+  "homepage": "https://github.com/Majoneza/github-action-wrap-in-express-and-pinger#readme",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@types/node": "^16.10.2"
+  }
+}

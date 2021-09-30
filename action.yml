@@ -1,0 +1,21 @@
+name: 'Wrap in express and pinger'
+description: 'Wrap the node application in an express and pinger environment'
+inputs:
+    application-path:
+        description: 'Path to the application (default: ./)'
+        required: true
+        default: './'
+    default-port:
+        description: 'Port used for express when the environment variable PORT is omitted'
+        required: true
+        default: 8080
+    pinger-website:
+        description: 'Website for pinger to ping'
+        required: true
+    pinger-interval:
+        description: 'Interval between pingings(in seconds)'
+        required: true
+        default: 60
+runs:
+    using: 'node12'
+    main: './build/index.js'

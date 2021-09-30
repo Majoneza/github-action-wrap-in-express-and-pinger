@@ -61,7 +61,7 @@ function getInputs(): [application_path: string, pingerWebsite: string, port: nu
 }
 
 async function checkRepository(application_path: string): Promise<void> {
-    const dirs = await promises.readdir(join(env.GITHUB_WORKSPACE!, application_path));
+    const dirs = await promises.readdir(join(env['GITHUB_WORKSPACE']!, application_path));
     if (dirs.findIndex(value => value === 'package.json') === -1) {
         throw new Error('Unable to find \"package.json\"');
     }
@@ -71,7 +71,7 @@ async function checkRepository(application_path: string): Promise<void> {
 }
 
 async function modifyPackageJSON(application_path: string): Promise<string> {
-    const packagejson = JSON.parse(await promises.readFile(join(env.GITHUB_WORKSPACE!, application_path, 'package.json'), {encoding: 'utf-8', flag: 'r'}));
+    const packagejson = JSON.parse(await promises.readFile(join(env['GITHUB_WORKSPACE']!, application_path, 'package.json'), {encoding: 'utf-8', flag: 'r'}));
     if (!('main' in packagejson && 'dependencies' in packagejson)) {
         throw new Error('Missing attributes \"main\" and/or \"dependencies\" in package.json');
     }
@@ -80,12 +80,12 @@ async function modifyPackageJSON(application_path: string): Promise<string> {
     if (!('express' in packagejson.dependencies)) {
         packagejson.dependencies['express'] = '^4.15.2'; // Enable setting express version
     }
-    await promises.writeFile(join(env.GITHUB_WORKSPACE!, application_path, 'package.json'), JSON.stringify(packagejson), {encoding: 'utf-8', flag: 'w'});
+    await promises.writeFile(join(env['GITHUB_WORKSPACE']!, application_path, 'package.json'), JSON.stringify(packagejson), {encoding: 'utf-8', flag: 'w'});
     return main_script_path;
 }
 
 async function writeApplication(application_path: string, template: string): Promise<void> {
-    await promises.writeFile(join(env.GITHUB_WORKSPACE!, application_path, 'index.js'), template, {encoding: 'utf-8', flag: 'wx'});
+    await promises.writeFile(join(env['GITHUB_WORKSPACE']!, application_path, 'index.js'), template, {encoding: 'utf-8', flag: 'wx'});
 }
 
 async function main(): Promise<void> {

@@ -9,14 +9,14 @@ const process = require('process');
 const PORT = process.env.PORT || ${port};
 const { Worker } = require('worker_threads');
 
-const worker = new Worker('${main_script_path.startsWith('./') ? main_script_path : ('./' + main_script_path)}');
-worker.on('message', (m) => console.log('Worker message: ' + m));
-worker.on('error', (e) => console.log('Worker error: ' + e));
-worker.on('exit', (code) => {
+const worker1 = new Worker('${main_script_path.startsWith('./') ? main_script_path : ('./' + main_script_path)}');
+worker1.on('message', (m) => console.log('Worker message: ' + m));
+worker1.on('error', (e) => console.log('Worker error: ' + e));
+worker1.on('exit', (code) => {
 	console.log('Worker exited with code: ' + code);
 });
 
-const worker = new Worker(new URL(\`data:text/javascript,
+const worker2 = new Worker(new URL(\`data:text/javascript,
 const { parentPort } = require('worker_threads')
 const https = require('https')
 
@@ -35,9 +35,9 @@ setInterval(() => {
 	});
 }, ${pingerInterval} * 1000);
 \`));
-worker.on('message', (m) => console.log('Worker message: ' + m));
-worker.on('error', (e) => console.log('Worker error: ' + e));
-worker.on('exit', (code) => {
+worker2.on('message', (m) => console.log('Worker message: ' + m));
+worker2.on('error', (e) => console.log('Worker error: ' + e));
+worker2.on('exit', (code) => {
 	console.log('Worker exited with code: ' + code);
 });
 
